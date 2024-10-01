@@ -98,11 +98,10 @@ def point_guided_deformation(image, source_pts, target_pts, alpha=1.0, eps=1e-8)
                 dx = v_prime[0] - x0
                 dy = v_prime[1] - y0
 
-                # 获取四个邻近像素值
-                I00 = image[y0, x0]  # 左上
-                I10 = image[y0, x1]  # 右上
-                I01 = image[y1, x0]  # 左下
-                I11 = image[y1, x1]  # 右下
+                I00 = image[y0, x0] 
+                I10 = image[y0, x1]  
+                I01 = image[y1, x0]  
+                I11 = image[y1, x1]  
 
                 # 进行双线性插值
                 warped_pixel = (
@@ -114,7 +113,6 @@ def point_guided_deformation(image, source_pts, target_pts, alpha=1.0, eps=1e-8)
 
                 warped_image[y, x] = warped_pixel
             else:
-                # 映射坐标超出范围, 填充黑色
                 warped_image[y, x] = [255, 255, 255]
 
 
