@@ -49,6 +49,7 @@ def save_images(inputs, targets, outputs, folder_name, epoch, num_images=5):
         output_img_np = tensor_to_image(outputs[i])
 
         # Concatenate the images horizontally
+
         comparison = np.hstack((input_img_np, target_img_np, output_img_np))
 
         # Save the comparison image
@@ -82,7 +83,7 @@ def train_one_epoch(model, dataloader, optimizer, criterion, device, epoch, num_
         outputs = model(image_rgb)
 
         # Save sample images every 5 epochs
-        if epoch % 5 == 0 and i == 0:
+        if epoch % 10 == 0 and i == 0:
             save_images(image_rgb, image_semantic, outputs, 'train_results', epoch)
 
         # Compute the loss
@@ -127,7 +128,7 @@ def validate(model, dataloader, criterion, device, epoch, num_epochs):
             val_loss += loss.item()
 
             # Save sample images every 5 epochs
-            if epoch % 5 == 0 and i == 0:
+            if epoch % 10 == 0 and i == 0:
                 save_images(image_rgb, image_semantic, outputs, 'val_results', epoch)
 
     # Calculate average validation loss
@@ -157,7 +158,7 @@ def main():
     scheduler = StepLR(optimizer, step_size=200, gamma=0.2)
 
     # Training loop
-    num_epochs = 800
+    num_epochs = 600
     for epoch in range(num_epochs):
         train_one_epoch(model, train_loader, optimizer, criterion, device, epoch, num_epochs)
         validate(model, val_loader, criterion, device, epoch, num_epochs)
@@ -172,3 +173,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
