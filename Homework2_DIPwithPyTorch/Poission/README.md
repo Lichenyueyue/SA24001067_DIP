@@ -5,3 +5,4 @@ This function generates a binary mask based on the given polygon vertices, where
 #### the Laplacian Distance Computation
 This function calculates the Laplacian loss between the foreground image and the blended image in the given mask area.
 ### Result
+<img src="pictures/result_Global.png" alt="alt text" width="800">
